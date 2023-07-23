@@ -1,5 +1,6 @@
 package dataModel
 
 interface TaxCalculator {
-    fun computeTax(taxableIncome: Money): Money
+    /** Computes the income tax given the specified taxable [income] */
+    fun computeTax(income: Money): Money
 }
