@@ -11,5 +11,11 @@ value class Percent private constructor(val amountBps: Long) {
         fun ofPercent(amount: Long): Percent = Percent(amountBps = amount * BASIS_POINTS_PER_PERCENT)
 
         fun ofBasisPoints(amount: Long): Percent = Percent(amountBps = amount)
+
+        val Int.percent: Percent
+            get() = ofPercent(this.toLong())
+
+        val Int.basisPoints: Percent
+            get() = ofBasisPoints(this.toLong())
     }
 }
