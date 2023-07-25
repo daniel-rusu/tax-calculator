@@ -12,6 +12,27 @@ import strikt.assertions.message
 
 class MoneyTest {
     @Test
+    fun `toString validation`() {
+        expectThat(0.dollars.toString())
+            .isEqualTo("$0")
+
+        expectThat(9.cents.toString())
+            .isEqualTo("$0.09")
+
+        expectThat(25.cents.toString())
+            .isEqualTo("$0.25")
+
+        expectThat(3.dollars.toString())
+            .isEqualTo("$3")
+
+        expectThat(Money.of(dollars = 7, cents = 8).toString())
+            .isEqualTo("$7.08")
+
+        expectThat(Money.of(dollars = 7, cents = 11).toString())
+            .isEqualTo("$7.11")
+    }
+
+    @Test
     fun `cannot create negative money amounts`() {
         expectThrows<IllegalArgumentException> {
             Money.ofCents(-10L)

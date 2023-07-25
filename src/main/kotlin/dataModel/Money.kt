@@ -8,6 +8,18 @@ value class Money private constructor(val cents: Long) {
         require(cents >= 0) { "Negative cents are not allowed: $cents" }
     }
 
+    override fun toString(): String {
+        val dollars = cents / CENTS_PER_DOLLAR
+
+        val remainder = cents - dollars * CENTS_PER_DOLLAR
+        val centsText = when {
+            remainder == 0L -> ""
+            remainder <= 9 -> ".0$remainder"
+            else -> ".$remainder"
+        }
+        return "$$dollars$centsText"
+    }
+
     operator fun plus(amount: Money): Money = Money(cents = this.cents + amount.cents)
 
     operator fun minus(amount: Money): Money = Money(cents = this.cents - amount.cents)
