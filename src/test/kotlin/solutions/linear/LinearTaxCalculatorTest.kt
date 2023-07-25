@@ -1,10 +1,9 @@
-package solutions.linearSolution
+package solutions.linear
 
 import dataModel.Money
 import dataModel.Money.Companion.dollars
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
-import solutions.linearSolution.LinearTaxCalculator
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 

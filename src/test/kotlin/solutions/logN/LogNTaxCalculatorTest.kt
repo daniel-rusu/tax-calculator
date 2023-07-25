@@ -1,4 +1,4 @@
-package solutions.logNSolution
+package solutions.logN
 
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets

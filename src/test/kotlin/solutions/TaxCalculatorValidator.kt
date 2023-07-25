@@ -3,7 +3,7 @@ package solutions
 import dataModel.Money
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
-import solutions.linearSolution.LinearTaxCalculator
+import solutions.linear.LinearTaxCalculator
 import strikt.api.Assertion
 import strikt.api.expectThat
 import kotlin.random.Random

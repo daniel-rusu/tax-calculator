@@ -1,4 +1,4 @@
-package solutions.logNSolution
+package solutions.logN
 
 import dataModel.Money
 import dataModel.TaxBracket

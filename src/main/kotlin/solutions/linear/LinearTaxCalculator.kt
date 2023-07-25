@@ -1,4 +1,4 @@
-package solutions.linearSolution
+package solutions.linear
 
 import dataModel.Money
 import dataModel.TaxBracket
