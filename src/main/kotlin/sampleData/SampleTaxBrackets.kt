@@ -38,4 +38,20 @@ object SampleTaxBrackets {
         TaxBracket(46_00.basisPoints, from = 215_950.dollars, to = 539_900.dollars),
         TaxBracket(48_00.basisPoints, from = 539_900.dollars),
     )
+
+    /**
+     * Brackets with a low highest-bracket to allow testing inefficient solutions without using too much memory.
+     *
+     * IMPORTANT: Don't increase the lower bound of the highest bracket for this tiny data set otherwise the tests of
+     * the first 3 constant-time iterations will end up using too much memory.
+     */
+    val bracketsWithTinyRange = listOf(
+        TaxBracket(10.percent, from = 0.dollars, to = 102.dollars),
+        TaxBracket(12.percent, from = 102.dollars, to = 417.dollars),
+        TaxBracket(22.percent, from = 417.dollars, to = 890.dollars),
+        TaxBracket(24.percent, from = 890.dollars, to = 1_700.dollars),
+        TaxBracket(32.percent, from = 1_700.dollars, to = 2_159.dollars),
+        TaxBracket(35.percent, from = 2_159.dollars, to = 5_399.dollars),
+        TaxBracket(37.percent, from = 5_399.dollars),
+    )
 }

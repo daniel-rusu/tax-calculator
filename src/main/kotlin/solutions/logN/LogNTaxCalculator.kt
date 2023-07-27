@@ -4,10 +4,12 @@ import dataModel.Money
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
 
+/** A tax calculator that computes income tax in Log(N) time, where N is the number of tax brackets */
 class LogNTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {
     private val taxBrackets = taxBrackets.toAccumulatedBrackets()
 
     override fun computeTax(income: Money): Money {
+        // Log(N) time to find the correct bracket
         val bracketIndex = taxBrackets.binarySearch { bracket ->
             when {
                 bracket.from > income -> 1
@@ -15,6 +17,7 @@ class LogNTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {
                 else -> 0
             }
         }
+        // + constant time to compute the total tax
         return taxBrackets[bracketIndex].computeTotalTax(income)
     }
 }
