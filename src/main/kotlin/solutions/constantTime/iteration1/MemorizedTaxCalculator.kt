@@ -28,7 +28,6 @@ class MemorizedTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {
     init {
         val taxCalculator = LogNTaxCalculator(taxBrackets)
 
-        // manually create a hashMap as "associateWith" creates a LinkedHashMap by default which uses more memory
         memorizedIncomeToTaxAmount = generateSequence(0.cents) { it + 1.cents }
             .takeWhile { it <= maxReportedIncome }
             // create a hashMap as "associateWith" creates a LinkedHashMap by default which uses more memory
