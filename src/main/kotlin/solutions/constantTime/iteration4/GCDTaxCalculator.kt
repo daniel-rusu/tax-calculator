@@ -52,7 +52,7 @@ class GCDTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {
 /** Computes the [gcd] of all the bracket sizes (in pennies) */
 private fun computeBracketSizeGCD(taxBrackets: List<TaxBracket>): Long {
     return taxBrackets.asSequence()
-        .filter { it.to != null }
+        .filter { it.to != null } // ignore the last unbounded bracket
         .map { it.to!!.cents - it.from.cents }
         .reduceOrNull { result, size -> gcd(result, size) }
         ?: 1

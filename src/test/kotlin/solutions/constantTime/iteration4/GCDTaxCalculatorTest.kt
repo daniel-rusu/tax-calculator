@@ -6,8 +6,8 @@ import solutions.TaxCalculatorValidator
 
 class GCDTaxCalculatorTest {
     @Test
-    fun `produces the same tax as the well-tested LinearTaxCalculator`() {
-        TaxCalculatorValidator.ensureProducesSameResultAsLinearTaxCalculator(
+    fun `produces the same tax amounts as the well-tested LinearTaxCalculator`() {
+        TaxCalculatorValidator.ensureProducesSameResultsAsLinearTaxCalculator(
             GCDTaxCalculator(SampleTaxBrackets.texasTaxBrackets),
             SampleTaxBrackets.texasTaxBrackets,
         )

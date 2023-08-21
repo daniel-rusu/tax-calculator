@@ -9,7 +9,7 @@ import strikt.api.expectThat
 import kotlin.random.Random
 
 object TaxCalculatorValidator {
-    fun ensureProducesSameResultAsLinearTaxCalculator(
+    fun ensureProducesSameResultsAsLinearTaxCalculator(
         taxCalculator: TaxCalculator,
         taxBrackets: List<TaxBracket>,
     ) {
