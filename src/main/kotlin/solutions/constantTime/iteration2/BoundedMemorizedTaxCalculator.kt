@@ -6,7 +6,7 @@ import dataModel.TaxBracket
 import dataModel.TaxCalculator
 import solutions.constantTime.iteration1.MemorizedTaxCalculator
 import solutions.logN.LogNTaxCalculator
-import solutions.logN.toAccumulatedBrackets
+import dataModel.toAccumulatedBrackets
 
 /**
  * An improved version of [MemorizedTaxCalculator] as it's bounded by the lower bound of the highest tax bracket.  All

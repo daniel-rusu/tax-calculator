@@ -1,8 +1,6 @@
-package solutions.logN
+package dataModel
 
-import dataModel.Money
 import dataModel.Money.Companion.dollars
-import dataModel.TaxBracket
 import solutions.linear.computeBracketTax
 
 /** Similar to [TaxBracket] except that it also stores the accumulated tax up to the start of this bracket */

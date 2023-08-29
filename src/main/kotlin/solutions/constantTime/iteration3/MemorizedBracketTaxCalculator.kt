@@ -5,8 +5,8 @@ import dataModel.Money.Companion.dollars
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
 import solutions.constantTime.iteration2.BoundedMemorizedTaxCalculator
-import solutions.logN.AccumulatedTaxBracket
-import solutions.logN.toAccumulatedBrackets
+import dataModel.AccumulatedTaxBracket
+import dataModel.toAccumulatedBrackets
 
 /**
  * An improved version of [BoundedMemorizedTaxCalculator] as it stores a reference to an existing bracket for each

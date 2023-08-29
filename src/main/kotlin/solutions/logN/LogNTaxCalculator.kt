@@ -3,6 +3,7 @@ package solutions.logN
 import dataModel.Money
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
+import dataModel.toAccumulatedBrackets
 
 /** A tax calculator that computes income tax in Log(N) time, where N is the number of tax brackets */
 class LogNTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {

@@ -5,8 +5,8 @@ import dataModel.Money.Companion.cents
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
 import solutions.constantTime.iteration3.MemorizedBracketTaxCalculator
-import solutions.logN.AccumulatedTaxBracket
-import solutions.logN.toAccumulatedBrackets
+import dataModel.AccumulatedTaxBracket
+import dataModel.toAccumulatedBrackets
 
 /**
  * This is expected to be thousands of times more efficient than the [MemorizedBracketTaxCalculator].
