@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.9.10" # https://kotlinlang.org/docs/releases.html#release-details
-jUnit = "5.9.3" # https://github.com/junit-team/junit5
-jUnitPlatformLauncher = "1.9.3" # https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher
+jUnit = "5.10.0" # https://github.com/junit-team/junit5
+jUnitPlatformLauncher = "1.10.0" # https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher
 strikt = "0.34.1" # https://github.com/robfletcher/strikt/releases/latest
 
 [libraries]
