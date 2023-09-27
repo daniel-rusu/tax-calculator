@@ -1,6 +1,7 @@
 package solutions
 
 import dataModel.Money
+import dataModel.Money.Companion.dollars
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
 import solutions.linear.LinearTaxCalculator
@@ -12,6 +13,7 @@ object TaxCalculatorValidator {
     fun ensureProducesSameResultsAsLinearTaxCalculator(
         taxCalculator: TaxCalculator,
         taxBrackets: List<TaxBracket>,
+        random: Random = Random,
     ) {
         val linearTaxCalculator = LinearTaxCalculator(taxBrackets)
 
@@ -21,8 +23,12 @@ object TaxCalculatorValidator {
                 .producesSameTax(asCalculator = linearTaxCalculator, forIncome = taxBracket.from)
 
             // Test a random value that lies within this bracket
-            val upperBound = taxBracket.to ?: (taxBracket.from * 2)
-            val amount = Random.nextLong(from = taxBracket.from.cents, until = upperBound.cents)
+            val upperBound = when {
+                taxBracket.to != null -> taxBracket.to!!
+                taxBracket.from.cents == 0L -> 100.dollars
+                else -> taxBracket.from * 2
+            }
+            val amount = random.nextLong(from = taxBracket.from.cents, until = upperBound.cents)
 
             expectThat(taxCalculator)
                 .producesSameTax(asCalculator = linearTaxCalculator, forIncome = Money.ofCents(amount))
