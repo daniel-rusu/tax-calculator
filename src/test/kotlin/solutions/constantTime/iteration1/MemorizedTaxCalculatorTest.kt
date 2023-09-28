@@ -3,6 +3,7 @@ package solutions.constantTime.iteration1
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
 import solutions.TaxCalculatorValidator
+import kotlin.random.Random
 
 class MemorizedTaxCalculatorTest {
     @Test
@@ -10,6 +11,7 @@ class MemorizedTaxCalculatorTest {
         TaxCalculatorValidator.ensureProducesSameResultsAsLinearTaxCalculator(
             MemorizedTaxCalculator(SampleTaxBrackets.bracketsWithTinyRange),
             SampleTaxBrackets.bracketsWithTinyRange,
+            Random,
         )
     }
 }

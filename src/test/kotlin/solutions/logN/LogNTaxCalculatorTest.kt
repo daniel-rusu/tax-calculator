@@ -3,6 +3,7 @@ package solutions.logN
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
 import solutions.TaxCalculatorValidator
+import kotlin.random.Random
 
 class LogNTaxCalculatorTest {
     @Test
@@ -10,6 +11,7 @@ class LogNTaxCalculatorTest {
         TaxCalculatorValidator.ensureProducesSameResultsAsLinearTaxCalculator(
             LogNTaxCalculator(SampleTaxBrackets.texasTaxBrackets),
             SampleTaxBrackets.texasTaxBrackets,
+            Random,
         )
     }
 }

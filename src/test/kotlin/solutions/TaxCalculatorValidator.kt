@@ -13,7 +13,7 @@ object TaxCalculatorValidator {
     fun ensureProducesSameResultsAsLinearTaxCalculator(
         taxCalculator: TaxCalculator,
         taxBrackets: List<TaxBracket>,
-        random: Random = Random,
+        random: Random,
     ) {
         val linearTaxCalculator = LinearTaxCalculator(taxBrackets)
 
