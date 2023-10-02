@@ -1,4 +1,4 @@
-package taxBracketGenerator
+package utilities
 
 import dataModel.Money.Companion.dollars
 import dataModel.Percent

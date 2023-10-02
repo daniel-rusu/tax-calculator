@@ -4,7 +4,7 @@ import dataModel.TaxBracket
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
 import solutions.TaxCalculatorValidator
-import taxBracketGenerator.TaxBracketGenerator
+import utilities.TaxBracketGenerator
 import kotlin.random.Random
 
 class MinBracketTaxCalculatorTest {
