@@ -25,7 +25,8 @@ class MemorizedBracketTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculat
         var bracketIndex = 0
         memorizedIncomeToBracket = generateSequence(0.dollars) { it + Money.ofCents(amount = 1) }
             .takeWhile { it < taxBrackets.last().from }
-            .associateWith { income ->
+            // create a hashMap as "associateWith" creates a LinkedHashMap by default which uses more memory
+            .associateWithTo(HashMap()) { income ->
                 if (income >= taxBrackets[bracketIndex].to!!) {
                     bracketIndex++
                 }

@@ -28,7 +28,7 @@ class BoundedMemorizedTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculat
         memorizedIncomeToTaxAmount = generateSequence(0.cents) { it + 1.cents }
             .takeWhile { it < highestBracket.from }
             // create a hashMap as "associateWith" creates a LinkedHashMap by default which uses more memory
-            .associateWithTo(hashMapOf()) { income -> taxCalculator.computeTax(income) }
+            .associateWithTo(HashMap()) { income -> taxCalculator.computeTax(income) }
     }
 
     override fun computeTax(income: Money): Money {

@@ -47,7 +47,8 @@ class MinBracketTaxCalculator(taxBrackets: List<TaxBracket>) : TaxCalculator {
         var bracketIndex = 0
         return generateSequence(0.cents) { it + chunkAmount }
             .takeWhile { it < accumulatedBrackets.last().from }
-            .associateWith { income ->
+            // create a hashMap as "associateWith" creates a LinkedHashMap by default which uses more memory
+            .associateWithTo(HashMap()) { income ->
                 if (income >= accumulatedBrackets[bracketIndex].to!!) {
                     bracketIndex++
                 }
