@@ -32,6 +32,13 @@ object TaxCalculatorValidator {
 
             expectThat(taxCalculator)
                 .producesSameTax(asCalculator = linearTaxCalculator, forIncome = Money.ofCents(amount))
+
+            if (taxBracket.to == null) continue
+
+            // Test the highest income that lies within this bracket
+            val highestIncomeInBracket = taxBracket.to!! - Money.ofCents(1)
+            expectThat(taxCalculator)
+                .producesSameTax(asCalculator = linearTaxCalculator, forIncome = highestIncomeInBracket)
         }
     }
 }
