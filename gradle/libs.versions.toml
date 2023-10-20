@@ -3,11 +3,11 @@ kotlin = "1.9.10" # https://kotlinlang.org/docs/releases.html#release-details
 jUnit = "5.10.0" # https://github.com/junit-team/junit5
 jUnitPlatformLauncher = "1.10.0" # https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher
 strikt = "0.34.1" # https://github.com/robfletcher/strikt/releases/latest
-jol = "0.17" # https://repo.maven.apache.org/maven2/org/openjdk/jol/jol-core/
+jamm = "0.4.0" # https://github.com/jbellis/jamm
 
 [libraries]
 kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
-jol = { module = "org.openjdk.jol:jol-core", version.ref = "jol" }
+jamm = { module = "com.github.jbellis:jamm", version.ref = "jamm" }
 jUnit = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jUnit" }
 jUnitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "jUnitPlatformLauncher" }
 strikt = { module = "io.strikt:strikt-core", version.ref = "strikt" }

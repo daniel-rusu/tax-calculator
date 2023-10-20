@@ -22,7 +22,7 @@ tasks.withType<KotlinJvmCompile>().configureEach {
 
 plugins.withId("org.jetbrains.kotlin.jvm") {
     dependencies {
-        implementation(libs.jol)
+        implementation(libs.jamm)
         implementation(libs.kotlinReflect)
         testImplementation(libs.strikt)
         testRuntimeOnly(libs.jUnitPlatformLauncher)
