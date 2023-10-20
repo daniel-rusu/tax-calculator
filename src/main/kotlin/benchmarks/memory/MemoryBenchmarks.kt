@@ -5,7 +5,6 @@ import dataModel.Money.Companion.dollars
 import dataModel.Percent.Companion.percent
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
-import org.github.jamm.MemoryMeter
 import sampleData.SampleTaxBrackets
 import solutions.constantTime.iteration4.GCDTaxCalculator
 import solutions.constantTime.iteration5.MinBracketTaxCalculator
@@ -47,9 +46,9 @@ private val taxCalculatorGenerators = listOf(
 )
 
 fun main() {
+    val memoryAnalyzer = MemoryAnalyzer(cacheShallowSizes = true)
     val timeSource = TimeSource.Monotonic
     val startTime = timeSource.markNow()
-    val memoryMeter = MemoryMeter.builder().build()
 
     printHeading("Sample datasets:")
     for (property in SampleTaxBrackets::class.memberProperties) {
@@ -57,12 +56,12 @@ fun main() {
         printDatasetMemoryUsageOfDataset(
             datasetName = property.name,
             taxBrackets = property.get(SampleTaxBrackets) as List<TaxBracket>,
-            memoryMeter = memoryMeter,
+            memoryAnalyzer = memoryAnalyzer,
         )
     }
     for (numBrackets in listOf(10, 20, 50)) {
         val lowerBoundDollarsOfHighestBracket = 175_000
-        val numSamples = 100
+        val numSamples = 50
 
         val upperBound = currencyFormatter.format(lowerBoundDollarsOfHighestBracket)
         printHeading("$numBrackets random tax brackets up to $upperBound ($numSamples samples):")
@@ -74,7 +73,7 @@ fun main() {
                 numSamples = numSamples,
                 lowerBoundDollarsOfHighestBracket = lowerBoundDollarsOfHighestBracket,
                 numBrackets = numBrackets,
-                memoryMeter = memoryMeter,
+                memoryAnalyzer = memoryAnalyzer,
                 createTaxCalculator = taxCalculatorGenerator,
             )
         }
@@ -93,17 +92,16 @@ private fun printHeading(heading: String) {
 private fun printDatasetMemoryUsageOfDataset(
     datasetName: String,
     taxBrackets: List<TaxBracket>,
-    memoryMeter: MemoryMeter,
+    memoryAnalyzer: MemoryAnalyzer,
 ) {
     val usages = taxCalculatorGenerators.map { generateTaxCalculatorFor ->
         val taxCalculator = generateTaxCalculatorFor(taxBrackets)
 
         MemoryUsage(
             scenario = taxCalculator::class.java.simpleName,
-            memoryUsageBytes = memoryMeter.measureDeep(taxCalculator)
+            memoryUsageBytes = memoryAnalyzer.sizeOf(taxCalculator)
         )
     }
-
     ResultPrinter.printMemoryUsage(title = "[$datasetName]", scenarioTitle = "Algorithm", results = usages)
 }
 
@@ -112,7 +110,7 @@ private fun simulateScenarios(
     numSamples: Int,
     lowerBoundDollarsOfHighestBracket: Int,
     numBrackets: Int,
-    memoryMeter: MemoryMeter,
+    memoryAnalyzer: MemoryAnalyzer,
     createTaxCalculator: (List<TaxBracket>) -> TaxCalculator,
 ) {
     val random = Random(seed)
@@ -124,7 +122,7 @@ private fun simulateScenarios(
             random,
         )
         val taxCalculator = createTaxCalculator(taxBrackets)
-        memoryUsages += memoryMeter.measureDeep(taxCalculator)
+        memoryUsages += memoryAnalyzer.sizeOf(taxCalculator)
     }
     memoryUsages.sort()
 
