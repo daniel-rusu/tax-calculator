@@ -66,7 +66,7 @@ private fun createRegionsAndChunks(
         while (chunkBoundary < regionEnd) {
             bracketChunkList += currentBracket
             chunkBoundary = (chunkBoundary + chunkSize).coerceAtMost(regionEnd)
-            // prepare the bracket for the next chunk (which might be part of the next region)
+            // prepare for the next chunk by advancing to the bracket that overlaps into the next chunk
             while (currentBracket.to != null && currentBracket.to!!.cents <= chunkBoundary) {
                 currentBracket = currentBracket.next!!
             }

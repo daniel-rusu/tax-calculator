@@ -1,22 +1,19 @@
 package benchmarks.memory
 
 import benchmarks.ResultPrinter
-import dataModel.Money.Companion.dollars
-import dataModel.Percent.Companion.percent
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
 import sampleData.SampleTaxBrackets
 import solutions.constantTime.iteration4.GCDTaxCalculator
 import solutions.constantTime.iteration5.MinBracketTaxCalculator
 import solutions.constantTime.iteration6.RegionTaxCalculator
-import utilities.TaxBracketGenerator
 import java.text.NumberFormat
-import kotlin.math.roundToLong
 import kotlin.random.Random
 import kotlin.reflect.full.memberProperties
 import kotlin.time.TimeSource
 
 private val currencyFormatter = NumberFormat.getCurrencyInstance()
+private val numberFormatter = NumberFormat.getNumberInstance()
 
 /**
  * List of generators that create tax calculators.
@@ -50,7 +47,7 @@ fun main() {
     val timeSource = TimeSource.Monotonic
     val startTime = timeSource.markNow()
 
-    printHeading("Sample datasets:")
+    ResultPrinter.printSectionHeading("Sample datasets:")
     for (property in SampleTaxBrackets::class.memberProperties) {
         @Suppress("UNCHECKED_CAST")
         printDatasetMemoryUsageOfDataset(
@@ -59,34 +56,32 @@ fun main() {
             memoryAnalyzer = memoryAnalyzer,
         )
     }
-    for (numBrackets in listOf(10, 20, 50)) {
-        val lowerBoundDollarsOfHighestBracket = 175_000
-        val numSamples = 50
+    for (numBrackets in listOf(10)) {//}, 20, 50)) {
+        val lowerBoundDollarsOfHighestBracket = 350_000
 
         val upperBound = currencyFormatter.format(lowerBoundDollarsOfHighestBracket)
-        printHeading("$numBrackets random tax brackets up to $upperBound ($numSamples samples):")
+        ResultPrinter.printSectionHeading("$numBrackets random tax brackets up to $upperBound:")
 
         val seed = System.currentTimeMillis() + System.nanoTime()
+        // Start low since it takes a long time for the less efficient algorithms and gradually increase this value
+        // to improve the accuracy of the results
+        var numSamples = 100
         for (taxCalculatorGenerator in taxCalculatorGenerators) {
+            println("Running simulation with ${numberFormatter.format(numSamples)} samples...")
             simulateScenarios(
                 seed = seed,
                 numSamples = numSamples,
+                percentiles = listOf(50, 90, 95),
                 lowerBoundDollarsOfHighestBracket = lowerBoundDollarsOfHighestBracket,
                 numBrackets = numBrackets,
                 memoryAnalyzer = memoryAnalyzer,
                 createTaxCalculator = taxCalculatorGenerator,
             )
+            numSamples *= 10
         }
     }
     val time = timeSource.markNow() - startTime
     println("Analysis completed in $time")
-}
-
-private fun printHeading(heading: String) {
-    val separator = "=".repeat(heading.length)
-    println(separator)
-    println(heading)
-    println(separator)
 }
 
 private fun printDatasetMemoryUsageOfDataset(
@@ -108,43 +103,27 @@ private fun printDatasetMemoryUsageOfDataset(
 private fun simulateScenarios(
     seed: Long,
     numSamples: Int,
+    percentiles: List<Int>,
     lowerBoundDollarsOfHighestBracket: Int,
     numBrackets: Int,
     memoryAnalyzer: MemoryAnalyzer,
     createTaxCalculator: (List<TaxBracket>) -> TaxCalculator,
 ) {
     val random = Random(seed)
-    val memoryUsages = mutableListOf<Long>()
-    repeat(numSamples) {
-        val taxBrackets = TaxBracketGenerator.generateTaxBrackets(
-            numBrackets,
-            lowerBoundDollarsOfHighestBracket,
-            random,
-        )
-        val taxCalculator = createTaxCalculator(taxBrackets)
-        memoryUsages += memoryAnalyzer.sizeOf(taxCalculator)
-    }
-    memoryUsages.sort()
+    val percentileResults = memoryAnalyzer.runMonteCarloSimulationAndMeasureMemoryUsage(
+        random,
+        numSamples,
+        percentiles,
+        lowerBoundDollarsOfHighestBracket,
+        numBrackets,
+        createTaxCalculator,
+    )
 
-    val results = listOf(50, 90, 95).map { percentile ->
-        MemoryUsage(scenario = "P$percentile", computePercentile(percentile, memoryUsages))
+    val results = percentiles.mapIndexed { index, percentile ->
+        MemoryUsage(scenario = "P$percentile", percentileResults[index])
     }
 
     // Create a temporary tax calculator instance to get the class name
-    val algorithmName = createTaxCalculator(
-        listOf(TaxBracket(taxRate = 10.percent, from = 0.dollars))
-    )::class.java.simpleName
-
+    val algorithmName = createTaxCalculator(SampleTaxBrackets.bracketsWithTinyRange)::class.simpleName
     ResultPrinter.printMemoryUsage(title = "[$algorithmName]", scenarioTitle = "Percentile", results = results)
-}
-
-private fun computePercentile(percentile: Int, values: List<Long>): Long {
-    val floatingIndex = percentile / 100.0 * (values.size - 1)
-    val index = floatingIndex.toInt()
-    val remainder = floatingIndex - index
-
-    if (remainder == 0.0) return values[index]
-
-    // Compute the weighted average based on how close it is to each index
-    return (values[index] * (1.0 - remainder) + values[index + 1] * remainder).roundToLong()
 }

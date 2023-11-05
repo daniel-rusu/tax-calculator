@@ -9,6 +9,13 @@ private const val MEMORY_USAGE_TITLE = "Data Structure Size (bytes)"
 private val numberFormatter = NumberFormat.getNumberInstance()
 
 object ResultPrinter {
+    fun printSectionHeading(heading: String) {
+        val separator = "=".repeat(heading.length)
+        println(separator)
+        println(heading)
+        println(separator)
+    }
+
     fun printMemoryUsage(title: String, scenarioTitle: String, results: List<MemoryUsage>) {
         val algorithmColumnSize = getScenarioColumnSize(scenarioTitle, results)
         val headerColumn = scenarioTitle.padEnd(algorithmColumnSize) + MEMORY_USAGE_TITLE
