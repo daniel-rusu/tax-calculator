@@ -17,6 +17,38 @@ class MemoryAnalyzer(cacheShallowSizes: Boolean) {
 
     /**
      * Performs a Monte Carlo simulation testing [numSamples] random tax systems each containing [numBrackets]
+     * brackets up to [lowerBoundDollarsOfHighestBracket] and measures the [percentile] percentile memory consumption
+     * in bytes.
+     *
+     * @param random The random generator for creating random tax systems
+     * @param numSamples The number of tax systems to simulate
+     * @param percentile The percentile of the memory consumption distribution to be measured
+     * @param lowerBoundDollarsOfHighestBracket The highest bracket will start at this value in dollars
+     * @param numBrackets The number of brackets that each tax system should contain
+     * @param createTaxCalculator A higher-order function for creating the [TaxCalculator] given the tax system
+     *
+     * @return The [percentile] percentile memory consumption of all the simulated tax systems
+     */
+    fun runMonteCarloSimulationAndMeasureMemoryUsage(
+        random: Random,
+        numSamples: Int,
+        percentile: Int,
+        lowerBoundDollarsOfHighestBracket: Int,
+        numBrackets: Int,
+        createTaxCalculator: (List<TaxBracket>) -> TaxCalculator,
+    ): Long {
+        val memoryUsages = runSimulationAndMeasureMemoryUsages(
+            random,
+            numSamples,
+            lowerBoundDollarsOfHighestBracket,
+            numBrackets,
+            createTaxCalculator,
+        )
+        return computePercentile(percentile, memoryUsages)
+    }
+
+    /**
+     * Performs a Monte Carlo simulation testing [numSamples] random tax systems each containing [numBrackets]
      * brackets up to [lowerBoundDollarsOfHighestBracket] and measures each of the [percentiles] memory consumption
      * in bytes.
      *
