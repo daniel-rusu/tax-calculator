@@ -1,6 +1,5 @@
-package benchmarks
+package benchmarks.tools
 
-import benchmarks.memory.MemoryUsage
 import java.text.NumberFormat
 
 private const val COLUMN_SPACING = 2

@@ -1,4 +1,4 @@
-package benchmarks.memory
+package benchmarks.tools
 
 import dataModel.TaxBracket
 import dataModel.TaxCalculator
