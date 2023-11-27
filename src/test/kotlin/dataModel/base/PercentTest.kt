@@ -1,7 +1,7 @@
-package dataModel
+package dataModel.base
 
-import dataModel.Money.Companion.dollars
-import dataModel.Percent.Companion.percent
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.Percent.Companion.percent
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo

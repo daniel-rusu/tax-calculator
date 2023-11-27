@@ -1,7 +1,10 @@
-package dataModel
+package dataModel.v3
 
-import dataModel.AccumulatedTaxBracketV2.Companion.toAccumulatedBracketsV2
-import dataModel.Money.Companion.dollars
+import dataModel.v3.AccumulatedTaxBracketV2.Companion.toAccumulatedBracketsV2
+import dataModel.base.Money
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.Percent
+import dataModel.base.TaxBracket
 import solutions.linear.computeBracketTax
 
 /**

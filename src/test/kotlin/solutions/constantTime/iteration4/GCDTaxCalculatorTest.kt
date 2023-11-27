@@ -1,6 +1,6 @@
 package solutions.constantTime.iteration4
 
-import dataModel.TaxBracket
+import dataModel.base.TaxBracket
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
 import solutions.TaxCalculatorValidator

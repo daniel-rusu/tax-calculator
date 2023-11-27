@@ -3,8 +3,8 @@ package benchmarks.memory
 import benchmarks.tools.MemoryAnalyzer
 import benchmarks.tools.MemoryUsage
 import benchmarks.tools.ResultPrinter
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import sampleData.SampleTaxBrackets
 import solutions.constantTime.iteration5.MinBracketTaxCalculator
 import solutions.constantTime.iteration6.RegionTaxCalculator

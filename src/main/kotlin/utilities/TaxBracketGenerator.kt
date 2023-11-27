@@ -1,9 +1,9 @@
 package utilities
 
-import dataModel.Money.Companion.dollars
-import dataModel.Percent
-import dataModel.Percent.Companion.percent
-import dataModel.TaxBracket
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.Percent
+import dataModel.base.Percent.Companion.percent
+import dataModel.base.TaxBracket
 import kotlin.random.Random
 
 private val maxPercentBps = 100.percent.amountBps

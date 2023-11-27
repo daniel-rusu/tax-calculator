@@ -1,7 +1,7 @@
-package dataModel
+package dataModel.base
 
-import dataModel.Money.Companion.cents
-import dataModel.Money.Companion.dollars
+import dataModel.base.Money.Companion.cents
+import dataModel.base.Money.Companion.dollars
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.api.expectThrows

@@ -1,9 +1,9 @@
 package sampleData
 
-import dataModel.Money.Companion.dollars
-import dataModel.Percent.Companion.basisPoints
-import dataModel.Percent.Companion.percent
-import dataModel.TaxBracket
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.Percent.Companion.basisPoints
+import dataModel.base.Percent.Companion.percent
+import dataModel.base.TaxBracket
 
 object SampleTaxBrackets {
     /** Texas tax brackets for tax year 2022 */

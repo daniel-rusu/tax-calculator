@@ -1,6 +1,8 @@
-package dataModel
+package dataModel.v2
 
-import dataModel.Money.Companion.dollars
+import dataModel.base.Money
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.TaxBracket
 import solutions.linear.computeBracketTax
 
 /** Similar to [TaxBracket] except that it also stores the accumulated tax up to the start of this bracket */

@@ -1,10 +1,10 @@
 package solutions.constantTime.iteration6
 
-import dataModel.AccumulatedTaxBracketV2
-import dataModel.AccumulatedTaxBracketV2.Companion.toAccumulatedBracketsV2
-import dataModel.Money
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.v3.AccumulatedTaxBracketV2
+import dataModel.v3.AccumulatedTaxBracketV2.Companion.toAccumulatedBracketsV2
+import dataModel.base.Money
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import solutions.constantTime.iteration5.MinBracketTaxCalculator
 import kotlin.math.sqrt
 

@@ -1,4 +1,4 @@
-package dataModel
+package dataModel.base
 
 data class TaxBracket(
     val taxRate: Percent,

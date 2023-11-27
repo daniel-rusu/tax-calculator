@@ -1,7 +1,7 @@
 package solutions.linear
 
-import dataModel.Money
-import dataModel.Money.Companion.dollars
+import dataModel.base.Money
+import dataModel.base.Money.Companion.dollars
 import org.junit.jupiter.api.Test
 import sampleData.SampleTaxBrackets
 import strikt.api.expectThat

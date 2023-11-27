@@ -1,12 +1,12 @@
 package solutions.constantTime.iteration3
 
-import dataModel.Money
-import dataModel.Money.Companion.dollars
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import solutions.constantTime.iteration2.BoundedMemorizedTaxCalculator
-import dataModel.AccumulatedTaxBracket
-import dataModel.toAccumulatedBrackets
+import dataModel.v2.AccumulatedTaxBracket
+import dataModel.v2.toAccumulatedBrackets
 
 /**
  * An improved version of [BoundedMemorizedTaxCalculator] as it stores a reference to an existing bracket for each

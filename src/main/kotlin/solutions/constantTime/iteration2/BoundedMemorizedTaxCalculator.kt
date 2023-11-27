@@ -1,12 +1,12 @@
 package solutions.constantTime.iteration2
 
-import dataModel.Money
-import dataModel.Money.Companion.cents
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.Money.Companion.cents
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import solutions.constantTime.iteration1.MemorizedTaxCalculator
 import solutions.logN.LogNTaxCalculator
-import dataModel.toAccumulatedBrackets
+import dataModel.v2.toAccumulatedBrackets
 
 /**
  * An improved version of [MemorizedTaxCalculator] as it's bounded by the lower bound of the highest tax bracket.  All

@@ -1,8 +1,8 @@
 package solutions.linear
 
-import dataModel.Money
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 
 /** A tax calculator that computes income tax in O(N) time, where N is the number of tax brackets */
 class LinearTaxCalculator(private val taxBrackets: List<TaxBracket>) : TaxCalculator {

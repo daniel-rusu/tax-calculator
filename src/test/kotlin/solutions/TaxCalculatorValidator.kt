@@ -1,9 +1,9 @@
 package solutions
 
-import dataModel.Money
-import dataModel.Money.Companion.dollars
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.Money.Companion.dollars
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import solutions.linear.LinearTaxCalculator
 import strikt.api.Assertion
 import strikt.api.expectThat

@@ -1,9 +1,9 @@
 package solutions.constantTime.iteration1
 
-import dataModel.Money
-import dataModel.Money.Companion.cents
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.Money.Companion.cents
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import sampleData.SampleTaxBrackets
 import solutions.logN.LogNTaxCalculator
 

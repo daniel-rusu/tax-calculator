@@ -1,4 +1,4 @@
-package dataModel
+package dataModel.base
 
 private const val BASIS_POINTS_PER_PERCENT = 100L
 private const val BASIS_POINTS_PER_100_PERCENT = 100 * BASIS_POINTS_PER_PERCENT

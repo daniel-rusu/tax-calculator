@@ -1,12 +1,12 @@
 package solutions.constantTime.iteration4
 
-import dataModel.Money
-import dataModel.Money.Companion.cents
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.Money
+import dataModel.base.Money.Companion.cents
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import solutions.constantTime.iteration3.MemorizedBracketTaxCalculator
-import dataModel.AccumulatedTaxBracket
-import dataModel.toAccumulatedBrackets
+import dataModel.v2.AccumulatedTaxBracket
+import dataModel.v2.toAccumulatedBrackets
 
 /**
  * This is expected to be thousands of times more efficient than the [MemorizedBracketTaxCalculator].

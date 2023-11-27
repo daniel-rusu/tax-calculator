@@ -1,4 +1,4 @@
-package dataModel
+package dataModel.base
 
 private const val CENTS_PER_DOLLAR = 100L
 

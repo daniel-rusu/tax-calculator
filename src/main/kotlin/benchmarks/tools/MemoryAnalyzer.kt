@@ -1,7 +1,7 @@
 package benchmarks.tools
 
-import dataModel.TaxBracket
-import dataModel.TaxCalculator
+import dataModel.base.TaxBracket
+import dataModel.base.TaxCalculator
 import org.github.jamm.Filters
 import org.github.jamm.MemoryMeter
 import org.github.jamm.MemoryMeterStrategy
